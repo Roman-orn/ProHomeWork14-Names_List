@@ -6,26 +6,23 @@ public class DataHandler {
 
     public String listOutput(List<String> list) {
         if (list == null || list.isEmpty()) {
-            return "No data available!";
+            throw new IllegalArgumentException("No data available!");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            int count = 0;
+            for (String item : list) {
+                sb.append(String.format("%d) %s, ", ++count, item));
+            }
+            sb.setLength(sb.length() - 2);
+            return sb.toString();
         }
-
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
-        for (String item : list) {
-            sb.append(String.format("%d) %s, ", ++count, item));
-        }
-        sb.setLength(sb.length() - 2);
-        return sb.toString();
     }
 
     public String elementOutputAt(List<String> list, int index) {
-        try {
-            if (list == null || list.isEmpty()) {
-                return "No data available!";
-            }
-            return "Name: " + list.get(index) + " is in index " + index;
-        } catch (IndexOutOfBoundsException e) {
-            return "Wrong index!";
+        if (index > 0 && index < list.size()) {
+            return String.format("Name: %s is in index %d", list.get(index), index);
+        } else {
+            throw new IllegalArgumentException("Index out of list");
         }
     }
 }
