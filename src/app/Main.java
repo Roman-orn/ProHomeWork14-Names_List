@@ -15,11 +15,7 @@ public class Main {
         try {
             String listOutput = handler.listOutput(data);
             operator.getOutput(listOutput);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             String elementAt = handler.elementOutputAt(data, 2);
             operator.getOutput(elementAt);
         } catch (RuntimeException e) {
