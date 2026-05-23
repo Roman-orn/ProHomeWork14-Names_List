@@ -19,10 +19,10 @@ public class DataHandler {
     }
 
     public String elementOutputAt(List<String> list, int index) {
-        if (index > 0 && index < list.size()) {
-            return String.format("Name: %s is in index %d", list.get(index), index);
-        } else {
-            throw new IllegalArgumentException("Index out of list");
+        if (index < 0 || index > list.size()) {
+            throw new IllegalArgumentException(String.format("Index %d outside the list", index));
         }
+
+        return String.format("Name: %s is in index %d", list.get(index), index);
     }
 }
